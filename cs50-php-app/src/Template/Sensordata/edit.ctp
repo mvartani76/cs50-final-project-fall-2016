@@ -1,0 +1,25 @@
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Form->postLink(
+                __('Delete'),
+                ['action' => 'delete', $sensordata->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $sensordata->id)]
+            )
+        ?></li>
+        <li><?= $this->Html->link(__('List Sensordata'), ['action' => 'index']) ?></li>
+    </ul>
+</nav>
+<div class="sensordata form large-9 medium-8 columns content">
+    <?= $this->Form->create($sensordata) ?>
+    <fieldset>
+        <legend><?= __('Edit Sensordata') ?></legend>
+        <?php
+            echo $this->Form->input('temp1');
+            echo $this->Form->input('photo1');
+            echo $this->Form->input('DeviceType');
+        ?>
+    </fieldset>
+    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
+</div>
