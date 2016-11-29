@@ -43,13 +43,29 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-
+        /* MCV Add */
+        $this->loadComponent('Auth', [
+                'authenticate' => [
+                    'Form' => [
+                        'fields' => [
+                            'username' => 'email',
+                            'password' => 'password'
+                        ]
+                    ]
+                ],
+                'loginAction' => [
+                    'controller' => 'Users',
+                    'action' => 'login'
+                ]
+            ]);
+        /* End MCV Add */
+	
         /*
          * Enable the following components for recommended CakePHP security settings.
          * see http://book.cakephp.org/3.0/en/controllers/components/security.html
          */
         //$this->loadComponent('Security');
-        //$this->loadComponent('Csrf');
+        //$this->loadComponent('Csrf');	
     }
 
     /**
