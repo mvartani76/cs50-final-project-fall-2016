@@ -23,3 +23,6 @@ You should now be able to visit the path to where you installed the app and see 
 
 Read and edit `config/app.php` and setup the 'Datasources' and any other
 configuration relevant for your application.
+
+In order to get CakePHP 3.3 to work on the Digital Ocean server, I needed to enable the PHP intl extension using the following command:
+> sudo apt-get install php5-intl
