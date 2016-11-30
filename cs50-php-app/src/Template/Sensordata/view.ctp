@@ -23,8 +23,8 @@
             <td><?= $this->Number->format($sensordata->photo1) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Updated') ?></th>
-            <td><?= h($sensordata->updated) ?></td>
+            <th scope="row"><?= __('Created') ?></th>
+            <td><?= h($sensordata->created) ?></td>
         </tr>
     </table>
     <div class="row">

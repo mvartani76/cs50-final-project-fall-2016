@@ -12,7 +12,7 @@
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('temp1') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('photo1') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('updated') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -22,7 +22,7 @@
                 <td><?= $this->Number->format($sensordata->id) ?></td>
                 <td><?= $this->Number->format($sensordata->temp1) ?></td>
                 <td><?= $this->Number->format($sensordata->photo1) ?></td>
-                <td><?= h($sensordata->updated) ?></td>
+                <td><?= h($sensordata->created) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $sensordata->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $sensordata->id]) ?>

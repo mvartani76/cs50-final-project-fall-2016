@@ -10,7 +10,7 @@ use Cake\ORM\Entity;
  * @property int $temp1
  * @property int $photo1
  * @property string $DeviceType
- * @property \Cake\I18n\Time $updated
+ * @property \Cake\I18n\Time $created
  */
 class Sensordata extends Entity
 {
