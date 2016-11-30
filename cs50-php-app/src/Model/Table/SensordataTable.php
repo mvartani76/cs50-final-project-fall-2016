@@ -33,6 +33,7 @@ class SensordataTable extends Table
         $this->table('sensordata');
         $this->displayField('id');
         $this->primaryKey('id');
+        $this->addBehavior('Timestamp');
     }
 
     /**
