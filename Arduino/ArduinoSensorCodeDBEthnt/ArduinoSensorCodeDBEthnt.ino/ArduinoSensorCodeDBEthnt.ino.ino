@@ -20,11 +20,14 @@ int outputValue = 0;
 int ledValue = 0;  
 int sval;  
 int sensorAvg;  
-int tenTot; 
+int tenTot;
+int servstatus;
 
-char server[] = "www.iot-detroit.org";
+char server[] = "cs50-final.mikevartanian.me";
 byte mac[] = {  0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x01 };
-IPAddress ip(192,168,1,177);
+
+// Note that this value needs to be set each time the router assigns a different address via DHCP
+IPAddress ip(192,168,1,75);
 
 // Initialize the client library
 EthernetClient client;
@@ -45,14 +48,15 @@ void setup() {
   }
   // give the Ethernet shield a second to initialize:
   delay(1000);
-  
+  // print your local IP address:
+  Serial.println(Ethernet.localIP());
   Serial.println("\nStarting connection to server...");
   // if you get a connection, report back via serial:
   if (client.connect(server, 80)) {
 
     // Make an HTTP request:
     client.print("GET HTTP/1.1\r\n");
-    client.print("Host: www.iot-detroit.org\r\n");
+    client.print("Host: cs50-final.mikevartanian.me/\r\n");
     client.print("Connection: close\r\n\r\n");
     client.stop();
   }
@@ -89,38 +93,29 @@ void loop()
   client.flush();
   client.stop();
 
+  // Configure the JSON string of temperature, light, and DeviceType values
+  String JsonData = "{\"temp1\": \"";
+  JsonData = JsonData + currentTemp;
+  JsonData = JsonData + "\", \"photo1\": \"";
+  JsonData = JsonData + outputValue;
+  JsonData = JsonData + "\", \"DeviceType\": \"ArduinoUNOEthernet\"}";
+  
   if (client.connect(server,80) == 1) {
-
     // HTTP requests are very picky on the format so pay attention
-    // to everyghing including spaces!!
-    client.print( "GET /iot-detroit-july2015/php/SensorRead_MySQL/addsensordata.php?");
-    client.print("temp1=");
-    client.print( currentTemp );
-    client.print("&");
-    client.print("photo1=");
-    client.print( outputValue );
-    client.print("&");
-    client.print("DeviceType=");
-    client.print("ArduinoUNOEthernet" );    
-    client.print( " HTTP/1.1\r\n");
-    client.print( "Host: www.iot-detroit.org\r\n\r\n" );
-    
-    Serial.print( "GET /iot-detroit-july2015/php/SensorRead_MySQL/addsensordata.php?");
-    Serial.print("temp1=");
-    Serial.print( currentTemp );
-    Serial.print("&");
-    Serial.print("photo1=");
-    Serial.print( outputValue );
-    Serial.print("&");
-    Serial.print("DeviceType=");
-    Serial.print("ArduinoUNOEthernet" );    
-    Serial.print( " HTTP/1.1\r\n");
-    Serial.print( "Host: www.iot-detroit.org\r\n" );
-
+    // to everything including spaces!!
+    client.println( "POST /api/sensordata.json HTTP/1.1");
+    client.println( "Host: cs50-final.mikevartanian.me");
+    client.println( "User-Agent: Arduino/1.0");
+    client.println( "Accept: application/json");
+    client.print( "Content-Length: ");
+    client.println(JsonData.length());
+    client.print( "Content-Type: application/json\r\n");
+    client.println( "Connection: close");
+    client.println();
+    client.println(JsonData);
   }
   else {
     Serial.println("Disconnected");
   }
-  
   delay(10000);
 }
