@@ -49,7 +49,7 @@ class SensordataTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->float('temp1')
+            ->decimal('temp1')
             ->requirePresence('temp1', 'create')
             ->notEmpty('temp1');
 
