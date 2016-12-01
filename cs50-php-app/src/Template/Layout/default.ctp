@@ -26,6 +26,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
 
