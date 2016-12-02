@@ -40,16 +40,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         //declare parameter as a dictionary which contains string as key and value combination.
         let parameters = ["temp1": temperature.text!, "photo1": light.text!, "DeviceType": DeviceType] as Dictionary<String, String>
-        print(DeviceType)
-        print(parameters)
         
         //create the url with URL
-        let url = URL(string: "http://requestb.in/1d4npk81") //change the url
-        
-        print(url)
+        let url = URL(string: "http://cs50-final.mikevartanian.me/api/sensordata.json") //change the url
         
         //create the session object
-        var session = Foundation.URLSession.shared
+        let session = Foundation.URLSession.shared
         
         //now create the MutableRequest object using the url object
         var request = URLRequest(url: url!)
@@ -62,8 +58,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         {
             print(error)
         }
-        
-        print(request)
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -91,47 +85,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 print("Error could not parse JSON 2: '\(jsonStr)'")
             }
         }
-        
         task.resume()
-        
-        
-        
-        //create dataTask using the session object to send data to the server
-        //var task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
-        //    print("Response: \(response)")
-        //    let strData = String(data: data!, encoding: .utf8)
-        //    print("Body: \(strData)")
-        //    var err: Error
-        //    var json = JSONSerialization.data(withJSONObject: data, options: .MutableLeaves)
-            
-            // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
-        //    if(err != nil) {
-        //        println(err!.localizedDescription)
-        //        let jsonStr = String(data: data, encoding: UTF8StringEncoding)
-        //        println("Error could not parse JSON: '\(jsonStr)'")
-        //    }
-        //    else {
-                // The JSONObjectWithData constructor didn't return an error. But, we should still
-                // check and make sure that json has a value using optional binding.
-        //        if let parseJSON = json {
-                    // Okay, the parsedJSON is here, let's get the value for 'success' out of it
-        //            var success = parseJSON["success"] as? Int
-        //            println("Succes: \(success)")
-        //        }
-        //        else {
-                    // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
-        //            let jsonStr = String(data: data, encoding: UTF8StringEncoding)
-        //            println("Error could not parse JSON: \(jsonStr)")
-        //        }
-        //    }
-        //})
-        
-        //task.resume()
-        
-        
-        
     }
-    
-
 }
 
