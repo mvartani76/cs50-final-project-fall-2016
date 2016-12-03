@@ -51,11 +51,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="rmk-zt-Gyt">
+                                <rect key="frame" x="42" y="330" width="291" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="lightSliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="up7-0l-qO7"/>
+                                </connections>
+                            </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="wK3-Du-nLV">
+                                <rect key="frame" x="42" y="228" width="291" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="tempSliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="qNI-zY-TPN"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="light" destination="8Tz-kk-iO6" id="l5x-e8-uNe"/>
+                        <outlet property="lightSlider" destination="rmk-zt-Gyt" id="9eX-qH-lAG"/>
+                        <outlet property="tempSlider" destination="wK3-Du-nLV" id="uaZ-uP-AzD"/>
                         <outlet property="temperature" destination="Ug2-Dj-pNi" id="dNE-k5-F8x"/>
                     </connections>
                 </viewController>

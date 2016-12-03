@@ -15,7 +15,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var temperature: UITextField!
     @IBOutlet weak var light: UITextField!
+    @IBOutlet weak var tempSlider: UISlider!
+    @IBOutlet weak var lightSlider: UISlider!
 
+    
     @IBOutlet weak var Send: UIButton!
     
     
@@ -33,6 +36,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     // MARK: Actions
+    
+    @IBAction func tempSliderChanged(_ sender: UISlider) {
+        temperature.text = "\(sender.value)"
+        print(temperature.text!)
+    }
+    
+    @IBAction func lightSliderChanged(_ sender: UISlider) {
+        let CurrentValue = Int(sender.value)
+        light.text = "\(CurrentValue)"
+        print(light.text!)
+    }
     
     @IBAction func SendValues(_ sender: UIButton) {
     
