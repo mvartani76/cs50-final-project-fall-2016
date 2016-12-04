@@ -226,3 +226,4 @@ Plugin::load('Migrations');
 
 
 Plugin::load('Crud');
+Plugin::load('Cors', ['bootstrap' => true, 'routes' => false]);
