@@ -23,16 +23,19 @@
 
         var alreadyFetched  = false;
 
-        function getRandomData() {
+        var data_selector = 'temp1';
+        var clearTimeoutBool = false;
 
-            console.log("1 data =", data);
-            console.log("data_num =", data_num);
+        function getDBData(data_selector) {
+
+            //console.log("1 data =", data);
+            //console.log("data_num =", data_num);
             if (alreadyFetched){
                 console.log("already_fetched");    
             }
             else
             {
-                console.log("fetching new data");
+                //console.log("fetching new data");
                 dataurl = "http://cs50-final.mikevartanian.me/api/sensordata.json?page="+iter,
 
                 $.ajax({
@@ -43,18 +46,18 @@
                         error: onErrorReceived
                     });
                 iter++;
-                console.log("2 data =", data);
+                //console.log("2 data =", data);
             }
 
             function onDataReceived(series) {
-                console.log("3 data =", data);
-                console.log("URL=", this.url);
+                //console.log("3 data =", data);
+                //console.log("URL=", this.url);
                 for (i=0;i<20;i++)
                 {
-                    series_data[i] = series.data[i]['id'];
+                    series_data[i] = series.data[i][data_selector];
                 }
-                console.log("series_data=", series_data);
-                console.log(series.pagination.current_page);
+                //console.log("series_data=", series_data);
+                //console.log(series.pagination.current_page);
                 alreadyFetched  = true;
             }
 
@@ -66,7 +69,7 @@
             if (alreadyFetched){
                 data.shift();
                 data.push(series_data[data_num]);
-                console.log("in alreadyfetched loop");
+                //console.log("in alreadyfetched loop");
                 data_num++;
             }
 
@@ -86,7 +89,7 @@
 
        // Set up the control widget
 
-        var updateInterval = 1000;
+        var updateInterval = 2000;
 
         var plot = $.plot("#placeholder", [], {
             lines: {
@@ -109,16 +112,35 @@
 
         function update() {
 
-            plot.setData([getRandomData()]);
+            plot.setData([getDBData(data_selector)]);
 
-            // Since the axes don't change, we don't need to call plot.setupGrid()
             plot.setupGrid();
             plot.draw();
-            setTimeout(update, updateInterval);
+
+            // Check the boolean value, clearTimeoutBool to determine whether or not to
+            // stop the realtime updates.
+            if (clearTimeoutBool)
+            {
+                clearTimeout();
+            }
+            else
+            {
+                setTimeout(update, updateInterval);
+            }
         }
 
+        // jQuery code to handle button presses for selecting data
         $("button.fetchSeries").click(function () {
+
+            data_selector = $(this).val();
+            clearTimeoutBool = false;
             update();
+        });
+
+        // jQuery code to handle button presses to stop real-time updates
+        // Real-time updates are stopped by calling the jQuery method, clearTimeout()
+        $("button.stopUpdate").click(function () {
+            clearTimeoutBool = true;
         });
 
     });
@@ -136,9 +158,10 @@
             <div id="placeholder" class="demo-placeholder"></div>
         </div>
         <p>
-            <button class="fetchSeries">First dataset</button>
-            [ <a href="http://cs50-final.mikevartanian.me/api/sensordata.json?page=2">see data</a> ]
-            <span></span>
+            <button class="fetchSeries" value=temp1>Start Temperature</button>
+            <button class="fetchSeries" value=photo1>Start Light</button>
+            <button class="fetchSeries" value=id>Start ID</button>
+            <button class="stopUpdate" >Stop Real Time Updates</button>
         </p>
     </div>
 
