@@ -59,7 +59,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
     </div>
-    <footer>
-    </footer>
+    <?= $this->element('footer') ?>
 </body>
 </html>
