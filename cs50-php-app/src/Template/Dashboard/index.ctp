@@ -7,12 +7,12 @@
 
  <script type="text/javascript">
 
-    $(function() {
+    $(function(){
 
         // We use an inline data source in the example, usually data would
         // be fetched from a server
 
-        var data = [],
+        var data = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
             totalPoints = 20;
         var series_data = [],
             totalPoints = 20;
@@ -25,67 +25,62 @@
 
         function getRandomData() {
 
-            if (series_data.length > 0)
-            {
-                tmp = series_data[0];
-                series_data = series_data.slice(1);
-                series_data.push(tmp);
-                data_num++;
-            }
-
-            if (data_num == 19)
-            {
-                alreadyFetched = false;
-                data_num = 0;
-            }
+            console.log("1 data =", data);
+            console.log("data_num =", data_num);
             if (alreadyFetched){
-                console.log("already_fetched");
-                
-                
+                console.log("already_fetched");    
             }
             else
             {
                 console.log("fetching new data");
-                dataurl = "http://cs50-final.mikevartanian.me/api/sensordata.json?Page="+iter,
-                console.log("url =", dataurl);
+                dataurl = "http://cs50-final.mikevartanian.me/api/sensordata.json?page="+iter,
+
                 $.ajax({
-                        //url: dataurl,
                         url: dataurl,
-                        data: {Page: 4},
                         type: "GET",
                         dataType: "json",
                         success: onDataReceived,
                         error: onErrorReceived
                     });
                 iter++;
+                console.log("2 data =", data);
             }
 
             function onDataReceived(series) {
-
+                console.log("3 data =", data);
+                console.log("URL=", this.url);
                 for (i=0;i<20;i++)
-                        //while (i < totalPoints)
-                        {
-
-                            series_data[i] = series.data[i]['id'];
-
-                        }
-                    //}
-                    //console.log(series.pagination.count);
-                    console.log(series.pagination.current_page);
-                    alreadyFetched  = true;
+                {
+                    series_data[i] = series.data[i]['id'];
+                }
+                console.log("series_data=", series_data);
+                console.log(series.pagination.current_page);
+                alreadyFetched  = true;
             }
+
             function  onErrorReceived() {
                 console.log("Error with GET request");
             }
 
-
             // Zip the generated y values with the x values
+            if (alreadyFetched){
+                data.shift();
+                data.push(series_data[data_num]);
+                console.log("in alreadyfetched loop");
+                data_num++;
+            }
+
+            if (data_num == 20)
+            {
+                alreadyFetched = false;
+                data_num = 0;
+            }
 
             var res = [];
             for (var i = 0; i < 20; ++i) {
-                res.push([i, series_data[i]])
+                res.push([i, data[i]])
             }
-
+            
             return res;
         }
 
@@ -93,7 +88,7 @@
 
         var updateInterval = 1000;
 
-        var plot = $.plot("#placeholder", [ getRandomData() ], {
+        var plot = $.plot("#placeholder", [], {
             lines: {
                 show: true
             },
@@ -122,8 +117,9 @@
             setTimeout(update, updateInterval);
         }
 
-        update();
-
+        $("button.fetchSeries").click(function () {
+            update();
+        });
 
     });
 
@@ -139,9 +135,12 @@
         <div class="demo-container">
             <div id="placeholder" class="demo-placeholder"></div>
         </div>
-
+        <p>
+            <button class="fetchSeries">First dataset</button>
+            [ <a href="http://cs50-final.mikevartanian.me/api/sensordata.json?page=2">see data</a> ]
+            <span></span>
+        </p>
     </div>
-
 
 </body>
 </html>
