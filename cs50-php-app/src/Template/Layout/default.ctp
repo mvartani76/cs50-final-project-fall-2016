@@ -40,12 +40,17 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
+            <!-- Only show the Page Title if the user is logged in. -->
+            <?php if ($loggedIn) : ?>
                 <h1><a href=""><?= $this->fetch('title') ?></a></h1>
             </li>
+            <?php endif; ?>
         </ul>
         <div class="top-bar-section">
             <ul class="right">
                 <!-- MCV Logout/Register Add -->
+                <!-- Only show the logout link if the user is logged in and only show the register link if there
+                    is no user logged in. -->
                 <?php if ($loggedIn) : ?>
                     <li><?= $this->Html->link('Logout', ['controller' => 'users', 'action' => 'logout']); ?></li>
                 <?php else : ?>
