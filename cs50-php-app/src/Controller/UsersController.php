@@ -122,7 +122,7 @@ class UsersController extends AppController
             if ($user)
             {
                 $this->Auth->setUser($user);
-                return $this->redirect(['controller' => 'users']);
+                return $this->redirect(['controller' => 'dashboard']);
             }
             $this->Flash->error('Incorrect Login');
         }

@@ -98,7 +98,14 @@ void loop()
   JsonData = JsonData + currentTemp;
   JsonData = JsonData + "\", \"photo1\": \"";
   JsonData = JsonData + outputValue;
-  JsonData = JsonData + "\", \"DeviceType\": \"ArduinoUNOEthernet\"}";
+  // Hardcoding user_id to 3 for now. This is user: test@test.com
+  // Eventually would like a way to communicate from platform to device possibly using GET
+  // command but beyond the scope for this final project  
+  JsonData = JsonData + "\", \"user_id\": \"3\", ";
+  // Hardcoding device_id to 1 for now. This is device: Arduino UNO - Test User 1
+  // Eventually would like a way to communicate from platform to device possibly using GET
+  // command but beyond the scope for this final project
+  JsonData = JsonData + "\"device_id\": \"1\"}";
   
   if (client.connect(server,80) == 1) {
     // HTTP requests are very picky on the format so pay attention

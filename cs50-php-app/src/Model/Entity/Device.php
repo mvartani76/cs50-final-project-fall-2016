@@ -4,16 +4,20 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Sensordata Entity
+ * Device Entity
  *
  * @property int $id
- * @property float $temp1
- * @property int $photo1
+ * @property string $deviceName
+ * @property int $deviceType_id
  * @property int $user_id
- * @property int $device_id
+ * @property string $token
  * @property \Cake\I18n\Time $created
+ * @property \Cake\I18n\Time $modified
+ *
+ * @property \App\Model\Entity\DeviceType $device_type
+ * @property \App\Model\Entity\User $user
  */
-class Sensordata extends Entity
+class Device extends Entity
 {
 
     /**
@@ -28,5 +32,14 @@ class Sensordata extends Entity
     protected $_accessible = [
         '*' => true,
         'id' => false
+    ];
+
+    /**
+     * Fields that are excluded from JSON versions of the entity.
+     *
+     * @var array
+     */
+    protected $_hidden = [
+        'token'
     ];
 }

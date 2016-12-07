@@ -40,15 +40,33 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
+            <!-- Only show the Page Title if the user is logged in. -->
+            <?php if ($loggedIn) : ?>
                 <h1><a href=""><?= $this->fetch('title') ?></a></h1>
             </li>
+            <?php endif; ?>
         </ul>
         <div class="top-bar-section">
+            <?php if ($loggedIn) : ?>
+                <ul class = "left">
+                    <li><?= $this->Html->link(__('Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Device Types'), ['controller' => 'Devicetypes', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Devices'), ['controller' => 'Devices', 'action' => 'index']) ?></li>
+                    <li><?= $this->Html->link(__('Sensor Data'), ['controller' => 'Sensordata', 'action' => 'index']) ?></li>
+                </ul>
+            <?php endif; ?>
             <ul class="right">
+                <!-- MCV Delete
+                <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
+                <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
+                -->
                 <!-- MCV Logout/Register Add -->
+                <!-- Only show the logout link if the user is logged in and only show the register link if there
+                    is no user logged in. -->
                 <?php if ($loggedIn) : ?>
                     <li><?= $this->Html->link('Logout', ['controller' => 'users', 'action' => 'logout']); ?></li>
                 <?php else : ?>
+                    <li><?= $this->Html->link('Login', ['controller' => 'users', 'action' => 'login']); ?></li>
                     <li><?= $this->Html->link('Register', ['controller' => 'users', 'action' => 'register']); ?></li>
                 <?php endif; ?>
                 <!-- MCV logout/register -->
@@ -59,7 +77,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
     </div>
-    <footer>
-    </footer>
+    <?= $this->element('footer') ?>
 </body>
 </html>

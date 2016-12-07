@@ -4,16 +4,14 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Sensordata Entity
+ * Devicetype Entity
  *
  * @property int $id
- * @property float $temp1
- * @property int $photo1
- * @property int $user_id
- * @property int $device_id
+ * @property string $name
  * @property \Cake\I18n\Time $created
+ * @property \Cake\I18n\Time $modified
  */
-class Sensordata extends Entity
+class Devicetype extends Entity
 {
 
     /**

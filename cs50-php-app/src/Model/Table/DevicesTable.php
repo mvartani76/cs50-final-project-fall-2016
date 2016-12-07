@@ -7,22 +7,22 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Sensordata Model
+ * Devices Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $Devicetypes
  * @property \Cake\ORM\Association\BelongsTo $Users
- * @property \Cake\ORM\Association\BelongsTo $Devices
  *
- * @method \App\Model\Entity\Sensordata get($primaryKey, $options = [])
- * @method \App\Model\Entity\Sensordata newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Sensordata[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Sensordata|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Sensordata patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Sensordata[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Sensordata findOrCreate($search, callable $callback = null)
+ * @method \App\Model\Entity\Device get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Device newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Device[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Device|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Device patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Device[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Device findOrCreate($search, callable $callback = null)
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class SensordataTable extends Table
+class DevicesTable extends Table
 {
 
     /**
@@ -35,18 +35,18 @@ class SensordataTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('sensordata');
+        $this->table('devices');
         $this->displayField('id');
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Users', [
-            'foreignKey' => 'user_id',
+        $this->belongsTo('Devicetypes', [
+            'foreignKey' => 'deviceType_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Devices', [
-            'foreignKey' => 'device_id',
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -64,14 +64,13 @@ class SensordataTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->numeric('temp1')
-            ->requirePresence('temp1', 'create')
-            ->notEmpty('temp1');
+            ->requirePresence('deviceName', 'create')
+            ->notEmpty('deviceName');
 
         $validator
-            ->integer('photo1')
-            ->requirePresence('photo1', 'create')
-            ->notEmpty('photo1');
+            ->requirePresence('token', 'create')
+            ->notEmpty('token')
+            ->add('token', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         return $validator;
     }
@@ -85,8 +84,9 @@ class SensordataTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->isUnique(['token']));
+        $rules->add($rules->existsIn(['deviceType_id'], 'Devicetypes'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
-        $rules->add($rules->existsIn(['device_id'], 'Devices'));
 
         return $rules;
     }

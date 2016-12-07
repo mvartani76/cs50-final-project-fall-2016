@@ -12,6 +12,8 @@
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('temp1') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('photo1') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('device_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -22,6 +24,8 @@
                 <td><?= $this->Number->format($sensordata->id) ?></td>
                 <td><?= $this->Number->format($sensordata->temp1) ?></td>
                 <td><?= $this->Number->format($sensordata->photo1) ?></td>
+                <td><?= $this->Number->format($sensordata->user_id) ?></td>
+                <td><?= $this->Number->format($sensordata->device_id) ?></td>
                 <td><?= h($sensordata->created) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $sensordata->id]) ?>
