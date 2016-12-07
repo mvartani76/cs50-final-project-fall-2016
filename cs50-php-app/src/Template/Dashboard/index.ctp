@@ -146,7 +146,11 @@
     });
 
 </script>
-<body>
+
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+
+</nav>
+<div class="dashboard index large-9 medium-8 columns content">
 
     <div id="header">
         <h2>Real-time updates</h2>
@@ -165,5 +169,5 @@
         </p>
     </div>
 
-</body>
-</html>
+</div>
+
