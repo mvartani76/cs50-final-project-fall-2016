@@ -106,8 +106,6 @@ void loop()
   // Eventually would like a way to communicate from platform to device possibly using GET
   // command but beyond the scope for this final project
   JsonData = JsonData + "\"device_id\": \"1\"}";
-
-  Serial.println(JsonData);
   
   if (client.connect(server,80) == 1) {
     // HTTP requests are very picky on the format so pay attention
