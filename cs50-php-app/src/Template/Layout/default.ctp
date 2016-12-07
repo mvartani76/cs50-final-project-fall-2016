@@ -52,7 +52,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                     <li><?= $this->Html->link(__('Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Device Types'), ['controller' => 'Devicetypes', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Devices'), ['controller' => 'Devices', 'action' => 'index']) ?></li>
-                    <li><?= $this->Html->link(__('Sensor Data'), ['controller' => 'Sensordata', 'action' => 'add']) ?></li>
+                    <li><?= $this->Html->link(__('Sensor Data'), ['controller' => 'Sensordata', 'action' => 'index']) ?></li>
                 </ul>
             <?php endif; ?>
             <ul class="right">
