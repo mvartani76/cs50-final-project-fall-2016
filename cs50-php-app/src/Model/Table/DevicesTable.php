@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Devices Model
  *
- * @property \Cake\ORM\Association\BelongsTo $DeviceTypes
+ * @property \Cake\ORM\Association\BelongsTo $Devicetypes
  * @property \Cake\ORM\Association\BelongsTo $Users
  *
  * @method \App\Model\Entity\Device get($primaryKey, $options = [])
@@ -41,7 +41,7 @@ class DevicesTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('DeviceTypes', [
+        $this->belongsTo('Devicetypes', [
             'foreignKey' => 'deviceType_id',
             'joinType' => 'INNER'
         ]);
@@ -85,7 +85,7 @@ class DevicesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['token']));
-        $rules->add($rules->existsIn(['deviceType_id'], 'DeviceTypes'));
+        $rules->add($rules->existsIn(['deviceType_id'], 'Devicetypes'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
 
         return $rules;

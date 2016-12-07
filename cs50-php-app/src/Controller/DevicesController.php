@@ -19,7 +19,7 @@ class DevicesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['DeviceTypes', 'Users']
+            'contain' => ['Devicetypes', 'Users']
         ];
         $devices = $this->paginate($this->Devices);
 
@@ -37,7 +37,7 @@ class DevicesController extends AppController
     public function view($id = null)
     {
         $device = $this->Devices->get($id, [
-            'contain' => ['DeviceTypes', 'Users']
+            'contain' => ['Devicetypes', 'Users']
         ]);
 
         $this->set('device', $device);
@@ -62,9 +62,9 @@ class DevicesController extends AppController
                 $this->Flash->error(__('The device could not be saved. Please, try again.'));
             }
         }
-        $deviceTypes = $this->Devices->DeviceTypes->find('list', ['limit' => 200]);
+        $Devicetypes = $this->Devices->Devicetypes->find('list', ['limit' => 200]);
         $users = $this->Devices->Users->find('list', ['limit' => 200]);
-        $this->set(compact('device', 'deviceTypes', 'users'));
+        $this->set(compact('device', 'devicetypes', 'users'));
         $this->set('_serialize', ['device']);
     }
 
@@ -90,9 +90,9 @@ class DevicesController extends AppController
                 $this->Flash->error(__('The device could not be saved. Please, try again.'));
             }
         }
-        $deviceTypes = $this->Devices->DeviceTypes->find('list', ['limit' => 200]);
+        $Devicetypes = $this->Devices->Devicetypes->find('list', ['limit' => 200]);
         $users = $this->Devices->Users->find('list', ['limit' => 200]);
-        $this->set(compact('device', 'deviceTypes', 'users'));
+        $this->set(compact('device', 'devicetypes', 'users'));
         $this->set('_serialize', ['device']);
     }
 
