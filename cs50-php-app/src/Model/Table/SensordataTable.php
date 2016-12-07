@@ -9,6 +9,9 @@ use Cake\Validation\Validator;
 /**
  * Sensordata Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $Users
+ * @property \Cake\ORM\Association\BelongsTo $Devices
+ *
  * @method \App\Model\Entity\Sensordata get($primaryKey, $options = [])
  * @method \App\Model\Entity\Sensordata newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Sensordata[] newEntities(array $data, array $options = [])
@@ -16,6 +19,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Sensordata patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\Sensordata[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Sensordata findOrCreate($search, callable $callback = null)
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class SensordataTable extends Table
 {
@@ -33,7 +38,17 @@ class SensordataTable extends Table
         $this->table('sensordata');
         $this->displayField('id');
         $this->primaryKey('id');
+
         $this->addBehavior('Timestamp');
+
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Devices', [
+            'foreignKey' => 'device_id',
+            'joinType' => 'INNER'
+        ]);
     }
 
     /**
@@ -49,7 +64,7 @@ class SensordataTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->decimal('temp1')
+            ->numeric('temp1')
             ->requirePresence('temp1', 'create')
             ->notEmpty('temp1');
 
@@ -58,10 +73,21 @@ class SensordataTable extends Table
             ->requirePresence('photo1', 'create')
             ->notEmpty('photo1');
 
-        $validator
-            ->requirePresence('DeviceType', 'create')
-            ->notEmpty('DeviceType');
-
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
+        $rules->add($rules->existsIn(['device_id'], 'Devices'));
+
+        return $rules;
     }
 }

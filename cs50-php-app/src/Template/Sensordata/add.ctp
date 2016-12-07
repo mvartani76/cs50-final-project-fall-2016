@@ -11,7 +11,8 @@
         <?php
             echo $this->Form->input('temp1');
             echo $this->Form->input('photo1');
-            echo $this->Form->input('DeviceType');
+            echo $this->Form->input('user_id');
+            echo $this->Form->input('device_id');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

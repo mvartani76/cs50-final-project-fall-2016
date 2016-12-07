@@ -23,12 +23,16 @@
             <td><?= $this->Number->format($sensordata->photo1) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('User Id') ?></th>
+            <td><?= $this->Number->format($sensordata->user_id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Device Id') ?></th>
+            <td><?= $this->Number->format($sensordata->device_id) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Created') ?></th>
             <td><?= h($sensordata->created) ?></td>
         </tr>
     </table>
-    <div class="row">
-        <h4><?= __('DeviceType') ?></h4>
-        <?= $this->Text->autoParagraph(h($sensordata->DeviceType)); ?>
-    </div>
 </div>
