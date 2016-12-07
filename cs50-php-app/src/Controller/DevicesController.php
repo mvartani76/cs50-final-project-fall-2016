@@ -62,8 +62,11 @@ class DevicesController extends AppController
                 $this->Flash->error(__('The device could not be saved. Please, try again.'));
             }
         }
-        $Devicetypes = $this->Devices->Devicetypes->find('list', ['limit' => 200]);
-        $users = $this->Devices->Users->find('list', ['limit' => 200]);
+        $devicetypes = $this->Devices->Devicetypes->find('list', ['limit' => 200]);
+
+        // Pass in the current user so when creating device, the user_id is automatically assigned
+        $users = $this->Auth->user('id');
+
         $this->set(compact('device', 'devicetypes', 'users'));
         $this->set('_serialize', ['device']);
     }

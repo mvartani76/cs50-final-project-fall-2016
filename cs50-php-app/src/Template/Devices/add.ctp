@@ -12,8 +12,9 @@
         <legend><?= __('Add Device') ?></legend>
         <?php
             echo $this->Form->input('deviceName');
-            echo $this->Form->input('deviceType_id');
-            echo $this->Form->input('user_id', ['options' => $users]);
+            echo $this->Form->input('deviceType_id', ['options' => $devicetypes]);
+            // Using currently logged in user as the user_id so hiding the form input value
+            echo $this->Form->hidden('user_id', ['default' => $users]);
             echo $this->Form->input('token');
         ?>
     </fieldset>
