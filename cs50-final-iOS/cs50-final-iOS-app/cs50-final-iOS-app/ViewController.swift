@@ -18,6 +18,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tempSlider: UISlider!
     @IBOutlet weak var lightSlider: UISlider!
 
+    @IBOutlet weak var userid: UITextField!
+    @IBOutlet weak var deviceid: UITextField!
+    
     
     @IBOutlet weak var Send: UIButton!
     
@@ -28,6 +31,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         temperature.delegate = self
         light.delegate = self
+        
+        userid.delegate = self
+        deviceid.delegate = self
         
         temperature.textAlignment = NSTextAlignment.center
         light.textAlignment = NSTextAlignment.center
@@ -53,11 +59,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func SendValues(_ sender: UIButton) {
-    
-        let DeviceType = UIDevice.current.model
         
         //declare parameter as a dictionary which contains string as key and value combination.
-        let parameters = ["temp1": temperature.text!, "photo1": light.text!, "DeviceType": DeviceType] as Dictionary<String, String>
+        let parameters = ["temp1": temperature.text!, "photo1": light.text!, "user_id": userid.text!, "device_id": deviceid.text!] as Dictionary<String, String>
         
         //create the url with URL
         let url = URL(string: "http://cs50-final.mikevartanian.me/api/sensordata.json") //change the url
@@ -105,5 +109,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         task.resume()
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        
+        return false
+    }
+    
 }
-
