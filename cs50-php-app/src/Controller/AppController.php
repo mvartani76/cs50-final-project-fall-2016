@@ -59,7 +59,11 @@ class AppController extends Controller
                 ]
             ]);
         /* End MCV Add */
-	
+
+        // Allow the display action so our pages controller
+        // continues to work.
+        $this->Auth->allow(['display']);
+
         /*
          * Enable the following components for recommended CakePHP security settings.
          * see http://book.cakephp.org/3.0/en/controllers/components/security.html

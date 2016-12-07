@@ -54,6 +54,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <?php if ($loggedIn) : ?>
                     <li><?= $this->Html->link('Logout', ['controller' => 'users', 'action' => 'logout']); ?></li>
                 <?php else : ?>
+                    <li><?= $this->Html->link('Login', ['controller' => 'users', 'action' => 'login']); ?></li>
                     <li><?= $this->Html->link('Register', ['controller' => 'users', 'action' => 'register']); ?></li>
                 <?php endif; ?>
                 <!-- MCV logout/register -->
