@@ -2,8 +2,8 @@
 
 # iOS App Screenshots
 
-![alt text](iOS-Images/cs50-final-ios-app-main-storyboard.png "Main.storyboard screenshot")
-![alt text](iOS-Images/cs50-final-ios-app-screenshot.PNG "App Screenshot running on iPhone 6s Plus")
+![alt text](iOS-images/cs50-final-ios-app-main-storyboard.png "Main.storyboard screenshot")
+![alt text](iOS-images/cs50-final-ios-app-screenshot.PNG "App Screenshot running on iPhone 6s Plus")
 
 # Tools / Software Used
 
