@@ -27,36 +27,29 @@ class DashboardController extends AppController
     {
         $this->viewBuilder()->layout('default');
 
-        $this->paginate = [
-            'contain' => ['Users']
-            ];
 
         // Query the Devicetypes table
         $this->loadModel('Devicetypes');
-        $devicetypes = $this->Devicetypes->find('all');
+        $devicetypes = $this->Devicetypes->find()->all();
         $this->set('devicetypes', $devicetypes);
-
-        $numdevicetypes = $devicetypes->count();
 
         // Query the Users table
         $this->loadModel('Users');
-        $users = $this->Users->find('all');
+        $users = $this->Users->find()->all();
         $this->set('users', $users);
-
-        $numusers = $users->count();
         
         // Query the number of devices by DeviceType in the database
         $this->loadModel('Devices');
 
-        for ($i=1; $i<=$numdevicetypes; $i++){
-            $devicecounts[$i] = $this->Devices->find('all')
-                ->where(['deviceType_id' => $i])
+	foreach ($devicetypes as $devicetype){
+            $devicecounts[] = $this->Devices->find('all')
+                ->where(['deviceType_id' => $devicetype->id])
                 ->count();
         }
 
-        for ($i=1; $i<=$numusers; $i++){
-            $usercounts[$i] = $this->Devices->find('all')
-                ->where(['user_id' => $i])
+	foreach ($users as $user){
+            $usercounts[] = $this->Devices->find('all')
+                ->where(['user_id' => $user->id])
                 ->count();
         }
 
