@@ -85,9 +85,7 @@
             return res;
         }
 
-       // Set up the control widget
-
-        var updateInterval = 2000;
+       // Configure plot options
 
         var plot = $.plot("#placeholder", [], {
             lines: {
@@ -105,6 +103,21 @@
             },
             xaxis: {
                 show: false
+            }
+        });
+
+        // Set up the update interval
+        var updateInterval = 2000;
+        $("#updateInterval").val(updateInterval).change(function () {
+            var v = $(this).val();
+            if (v && !isNaN(+v)) {
+                updateInterval = +v;
+                if (updateInterval < 1) {
+                    updateInterval = 1;
+                } else if (updateInterval > 5000) {
+                    updateInterval = 5000;
+                }
+                $(this).val("" + updateInterval);
             }
         });
 
@@ -140,22 +153,16 @@
         $("button.stopUpdate").click(function () {
             clearTimeoutBool = true;
         });
-
     });
 
 </script>
 
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Devices'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
 </nav>
 <div class="devices form large-9 medium-8 columns content">
     <div id="header">
         <h2>Real-time updates</h2>
+        <p>In this section of the site, I experimented with using AJAX to fetch the data from the MySQL database via RESTFUL API without having to refresh the page. It is not actually real-time as it starts from the beginning of the sensordata table. </p>
     </div>
 
     <div id="content">
@@ -169,5 +176,7 @@
             <button class="fetchSeries" value=id>Start ID</button>
             <button class="stopUpdate" >Stop Real Time Updates</button>
         </p>
+        <p>Time between updates: <input id="updateInterval" type="text" value="" style="text-align: right; width:5em"> milliseconds</p>
+
     </div>
 </div>
