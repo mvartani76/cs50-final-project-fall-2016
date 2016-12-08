@@ -6,6 +6,24 @@ There are two main files that were modified to create this application
 **Main.Storyboard** - File that basically configures how the screen looks
 
 ## ViewController.swift
+
+Set up Outlets (done in conjunction with Main.Storyboard)
+```javascript
+class ViewController: UIViewController, UITextFieldDelegate {
+
+    // MARK: Properties
+    @IBOutlet weak var temperature: UITextField!
+    @IBOutlet weak var light: UITextField!
+    @IBOutlet weak var tempSlider: UISlider!
+    @IBOutlet weak var lightSlider: UISlider!
+
+    @IBOutlet weak var userid: UITextField!
+    @IBOutlet weak var deviceid: UITextField!
+    
+    
+    @IBOutlet weak var Send: UIButton!
+```
+
 Code for closing keyboard after pressing done button
 ```javascript
 // Pressing the Done button closes the keyboard
@@ -14,10 +32,14 @@ Code for closing keyboard after pressing done button
         
         return false
     }
-```    
+```
+
+## Main.Storyboard
+
+<img src="iOS-images/cs50-final-ios-app-main-storyboard.png" width="700px" height="500px">
+
 # iOS App Screenshots
 
-<img src="iOS-images/cs50-final-ios-app-main-storyboard.png" width="500px" height="500px">
 <img src="iOS-images/cs50-final-ios-app-screenshot.PNG" width="300px" height="500px">
 
 # Tools / Software Used
