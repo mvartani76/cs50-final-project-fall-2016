@@ -14,7 +14,7 @@ $cats = array();
 
 foreach ($usercounts as $usercount)
 {
-    $data[] = $devicecount;
+    $data[] = $usercount;
 }
 
 foreach ($users as $user)
