@@ -39,7 +39,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <h3 class="text-center">Basic Concept</h3>
     <div class="slideshow">
         <p> For my CS50 final project, I created a very simple Internet of Things (IoT) Platform that can read in data
-                            from embedded devices such as Arduino and Raspberry Pi as well as mobile devices such as an iPhone.</p>
+            from embedded devices such as Arduino and Raspberry Pi as well as mobile devices such as an iPhone.</p>
     </div>
     <div class="slideshow-container">
 
@@ -74,6 +74,17 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </div>
     
     <?= $this->Html->script('slideshow'); ?>
-
+    <h3 class="text-center">Next Steps</h3>
+        <div class="slideshow">
+            <p> The site currently is able to log data from sensors via embedded development boards such as the Arduino UNO and Raspberry as well as simulated data from iOS devices. The site, however, is far from complete. The major tasks still remaining are:</p>
+            <ul class="left-list-style">
+                <li>Additional Embedded Devices and Sensors</li>
+                    <p class="slideshow">The current setup utilizes a temperature sensor and a photoresistor which measures the temperature (obviously) and the ambient light. Other sensors such as humidity, ambient noise (microphone), vibration, and hall effect to name a few would be useful to have readily available.</p>
+                <li>Device Authentication</li>
+                    <p class="slideshow">The code on the embedded devices currently just send data to the site's RESTFUL API with no authentication. Users need to be authenticated to login to the the site but the data sent has no verification. I was thinking about using JWTs to achieve this but could not figure out how to do this in time. There is also no user information resident on the embedded development boards so user and device identifiers are manually hardcoded which could lead to problems.</p>
+                <li>Rules and Triggers</li>
+                    <p class="slideshow">The data from the sensors is stored in a MySQL database and visualized on the site but there are no rules or triggers that does something based on that data. For example, if a temperature value is greater than a threshold, send a text message.</p>
+            </ul>
+        </div>
 </body>
 </html>
