@@ -1,6 +1,4 @@
-<?php $this->set('pageTitle', 'Dashboard'); ?>
-
-<?php
+    <?php
         echo $this->Html->css('flot/example');
         echo $this->Html->script('flot/jquery');
         echo $this->Html->script('flot/jquery.flot');?>
@@ -146,16 +144,6 @@
     });
 
 </script>
-
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Real-Time Charts'), ['action' => 'realtime']) ?></li>
-        <li><?= $this->Html->link(__('Time Series Charts'), ['action' => 'timecharts']) ?></li>
-    </ul>
-</nav>
-<div class="dashboard index large-9 medium-8 columns content">
-
     <div id="header">
         <h2>Real-time updates</h2>
     </div>
@@ -172,10 +160,3 @@
             <button class="stopUpdate" >Stop Real Time Updates</button>
         </p>
     </div>
-
-    <div id="highcharts-container-devices-type"></div>
-        <?= $this->element('Charts/chart-devices-type', $devicecounts) ?>
-    <div id="highcharts-container-devices-user"></div>
-        <?= $this->element('Charts/chart-devices-user', $usercounts) ?>
-</div>
-

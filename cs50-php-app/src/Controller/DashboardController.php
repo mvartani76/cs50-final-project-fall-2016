@@ -141,4 +141,38 @@ class DashboardController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    /**
+     * Realtime method
+     *
+     * @param string|null $id Dashboard id.
+     * @return \Cake\Network\Response|null
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function realtime($id = null)
+    {
+        $dashboard = $this->Dashboard->get($id, [
+            'contain' => []
+        ]);
+
+        $this->set('dashboard', $dashboard);
+        $this->set('_serialize', ['dashboard']);
+    }    
+
+    /**
+     * Timecharts method
+     *
+     * @param string|null $id Dashboard id.
+     * @return \Cake\Network\Response|null
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function timecharts($id = null)
+    {
+        $dashboard = $this->Dashboard->get($id, [
+            'contain' => []
+        ]);
+
+        $this->set('dashboard', $dashboard);
+        $this->set('_serialize', ['dashboard']);
+    } 
 }
