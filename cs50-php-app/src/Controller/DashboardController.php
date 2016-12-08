@@ -25,7 +25,7 @@ class DashboardController extends AppController
      */
     public function index()
     {
-        $this->viewBuilder()->layout('default');
+        $this->viewBuilder()->layout('dashboard-default');
 
 
         // Query the Devicetypes table
