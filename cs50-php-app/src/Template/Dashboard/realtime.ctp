@@ -7,9 +7,7 @@
 
     $(function(){
 
-        // We use an inline data source in the example, usually data would
-        // be fetched from a server
-
+        // Initialize data array with all zeros
         var data = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
             totalPoints = 20;
         var series_data = [],
@@ -24,16 +22,15 @@
         var data_selector = 'temp1';
         var clearTimeoutBool = false;
 
+        // Get selected data from the database via GET request
         function getDBData(data_selector) {
 
-            //console.log("1 data =", data);
-            //console.log("data_num =", data_num);
             if (alreadyFetched){
                 console.log("already_fetched");    
             }
             else
             {
-                //console.log("fetching new data");
+                // Loop through the various pages of sensordata data
                 dataurl = "http://cs50-final.mikevartanian.me/api/sensordata.json?page="+iter,
 
                 $.ajax({
@@ -44,21 +41,18 @@
                         error: onErrorReceived
                     });
                 iter++;
-                //console.log("2 data =", data);
             }
 
+            // This function gets called when the AJAX request returns with SUCCESS
             function onDataReceived(series) {
-                //console.log("3 data =", data);
-                //console.log("URL=", this.url);
                 for (i=0;i<20;i++)
                 {
                     series_data[i] = series.data[i][data_selector];
                 }
-                //console.log("series_data=", series_data);
-                //console.log(series.pagination.current_page);
                 alreadyFetched  = true;
             }
 
+            // This function gets called when the AJAX request reutrns with ERROR
             function  onErrorReceived() {
                 console.log("Error with GET request");
             }
@@ -67,7 +61,6 @@
             if (alreadyFetched){
                 data.shift();
                 data.push(series_data[data_num]);
-                //console.log("in alreadyfetched loop");
                 data_num++;
             }
 
@@ -121,6 +114,7 @@
             }
         });
 
+        // Function that updates the graph
         function update() {
 
             plot.setData([getDBData(data_selector)]);

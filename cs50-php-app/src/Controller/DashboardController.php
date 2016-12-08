@@ -41,13 +41,13 @@ class DashboardController extends AppController
         // Query the number of devices by DeviceType in the database
         $this->loadModel('Devices');
 
-	foreach ($devicetypes as $devicetype){
+        foreach ($devicetypes as $devicetype){
             $devicecounts[] = $this->Devices->find('all')
                 ->where(['deviceType_id' => $devicetype->id])
                 ->count();
         }
 
-	foreach ($users as $user){
+        foreach ($users as $user){
             $usercounts[] = $this->Devices->find('all')
                 ->where(['user_id' => $user->id])
                 ->count();
