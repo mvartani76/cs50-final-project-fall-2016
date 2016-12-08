@@ -4,7 +4,6 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Real-Time Charts'), ['action' => 'realtime']) ?></li>
-        <li><?= $this->Html->link(__('Time Series Charts'), ['action' => 'timecharts']) ?></li>
     </ul>
 </nav>
 <div class="dashboard index large-9 medium-8 columns content">
