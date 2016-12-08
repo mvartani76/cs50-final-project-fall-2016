@@ -144,6 +144,16 @@
     });
 
 </script>
+
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('List Devices'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+    </ul>
+</nav>
+<div class="devices form large-9 medium-8 columns content">
     <div id="header">
         <h2>Real-time updates</h2>
     </div>
@@ -160,3 +170,4 @@
             <button class="stopUpdate" >Stop Real Time Updates</button>
         </p>
     </div>
+</div>

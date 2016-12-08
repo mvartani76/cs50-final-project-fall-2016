@@ -149,7 +149,7 @@ class DashboardController extends AppController
      * @return \Cake\Network\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function realtime($id = null)
+    public function realtime()
     {
         $this->viewBuilder()->layout('default');
     }    
@@ -161,7 +161,7 @@ class DashboardController extends AppController
      * @return \Cake\Network\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function timecharts($id = null)
+    public function timecharts()
     {
         $this->viewBuilder()->layout('default');
     } 
