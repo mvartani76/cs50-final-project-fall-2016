@@ -19,7 +19,7 @@ foreach ($devicedatacounts as $devicedatacount)
 
 foreach ($devices as $device)
 {
-    $cats[] = $devicetype->deviceName;
+    $cats[] = $device->deviceName;
 }
 
 $chart->yAxis->min = 0;
