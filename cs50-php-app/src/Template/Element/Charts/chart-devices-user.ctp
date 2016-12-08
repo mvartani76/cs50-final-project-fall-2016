@@ -29,7 +29,7 @@ $chart->xAxis->labels     = [
 	'enabled' => 'false'
 ];
 
-$chart->series[] = array('shadow' => 1, 'name' => 'Device Types', 'data' => $data);
+$chart->series[] = array('shadow' => 1, 'name' => 'User Emails', 'data' => $data);
 ?>
 
 <?php echo $chart->render('chart', null, true); ?>
