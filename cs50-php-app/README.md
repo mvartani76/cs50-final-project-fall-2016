@@ -1,3 +1,21 @@
+# PHP Source Code
+
+Here is the source code used to generate the cloud platform. This is primarily driven by the CakePHP frameworks which are described a bit more below
+
+## Database
+This simple IoT platform project utilizes a database with four (4) tables: users, devices, devicetypes, sensordata
+
+![alt text](images/database/cs50-final-database.jpg "phpMyadmin screenshot of MySQL Database")
+
+### Users Table
+![alt text](images/database/cs50-final-users-table.jpg "phpMyadmin screenshot of MySQL Users Table")
+### Devices Table
+![alt text](images/database/cs50-final-devices-table.jpg "phpMyadmin screenshot of MySQL Devices Table")
+### Devicetypes Table
+![alt text](images/database/cs50-final-devicetypes-table.jpg "phpMyadmin screenshot of MySQL Devicetypes Table")
+### Sensordata Table
+![alt text](images/database/cs50-final-sensordata-table.jpg "phpMyadmin screenshot of MySQL Sensordata Table")
+
 # CakePHP Application Skeleton
 
 [![Build Status](https://img.shields.io/travis/cakephp/app/master.svg?style=flat-square)](https://travis-ci.org/cakephp/app)
