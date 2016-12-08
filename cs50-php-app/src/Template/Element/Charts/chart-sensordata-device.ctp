@@ -3,7 +3,7 @@
 
 $chart = new \Ghunti\HighchartsPHP\Highchart();
 $chart->includeExtraScripts(array('highcharts-more'));
-$chart->chart->renderTo = 'highcharts-container-devices-type';
+$chart->chart->renderTo = 'highcharts-container-sensordatda-device';
 
 $chart->chart->type = 'column';
 
