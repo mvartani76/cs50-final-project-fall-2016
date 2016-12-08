@@ -9,6 +9,16 @@ Place Arduino OneWire and dtc Library Folders in <your-path-to-Arduino-Directory
 
 **ArduinoSensorCodeDBEthnt** - This Arduino sketch sends HTTP GET requests to the Simple IoT platform via the RESTful API.
 
+## Configure Server and IP Address
+```C
+har server[] = "cs50-final.mikevartanian.me";
+byte mac[] = {  0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x01 };
+
+// Note that this value needs to be set each time the router assigns a different address via DHCP
+IPAddress ip(192,168,1,75);
+```
+Note that the IP address is dependant on the users address given via DHCP
+
 # Arduino UNO R3 Hardware Setup
 
 ![alt text](Arduino-Images/ArduinoUNOR3-lighttempsensor-bb.png "Fritzing drawing of the Arduino UNO R3 connected to breadboard with light and temperature sensors")
