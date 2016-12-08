@@ -227,3 +227,7 @@ Plugin::load('Migrations');
 
 Plugin::load('Crud');
 Plugin::load('Cors', ['bootstrap' => true, 'routes' => false]);
+
+Plugin::load('cakephp-cors');
+
+Plugin::load('highcharts-php');

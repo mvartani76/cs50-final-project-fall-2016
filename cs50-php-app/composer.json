@@ -11,7 +11,8 @@
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "*",
         "friendsofcake/crud": "~4.0",
-        "ozee31/cakephp-cors": "^1.0"
+        "ozee31/cakephp-cors": "^1.0",
+        "ghunti/highcharts-php": "~3.0"
     },
     "require-dev": {
         "psy/psysh": "@stable",
