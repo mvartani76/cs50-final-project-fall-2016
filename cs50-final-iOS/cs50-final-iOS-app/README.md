@@ -4,6 +4,8 @@
 
 ![alt text](iOS-images/cs50-final-ios-app-main-storyboard.png { width: 400px; } "Main.storyboard screenshot")
 ![alt text](iOS-images/cs50-final-ios-app-screenshot.PNG { width: 400px; } "App Screenshot running on iPhone 6s Plus")
+<img src="iOS-images/cs50-final-ios-app-main-storyboard.png" width="400px">
+<img src="iOS-images/cs50-final-ios-app-screenshot.PNG" width="400px">
 
 # Tools / Software Used
 
