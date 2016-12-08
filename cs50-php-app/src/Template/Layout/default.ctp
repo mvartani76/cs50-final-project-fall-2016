@@ -47,8 +47,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <?php endif; ?>
         </ul>
         <div class="top-bar-section">
+            <!-- Only show the menu links if the user is logged in -->
             <?php if ($loggedIn) : ?>
                 <ul class = "left">
+                    <li><?= $this->Html->link(__('Dashboard'), ['controller' => 'Dashboard', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Device Types'), ['controller' => 'Devicetypes', 'action' => 'index']) ?></li>
                     <li><?= $this->Html->link(__('Devices'), ['controller' => 'Devices', 'action' => 'index']) ?></li>
@@ -56,11 +58,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 </ul>
             <?php endif; ?>
             <ul class="right">
-                <!-- MCV Delete
-                <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
-                -->
-                <!-- MCV Logout/Register Add -->
+
                 <!-- Only show the logout link if the user is logged in and only show the register link if there
                     is no user logged in. -->
                 <?php if ($loggedIn) : ?>
@@ -69,7 +67,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                     <li><?= $this->Html->link('Login', ['controller' => 'users', 'action' => 'login']); ?></li>
                     <li><?= $this->Html->link('Register', ['controller' => 'users', 'action' => 'register']); ?></li>
                 <?php endif; ?>
-                <!-- MCV logout/register -->
             </ul>
         </div>
     </nav>
