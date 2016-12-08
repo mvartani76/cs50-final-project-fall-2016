@@ -40,6 +40,9 @@ class DashboardController extends AppController
         
         // Query the number of devices by DeviceType in the database
         $this->loadModel('Devices');
+	$devices = $this->Devices->find('all');
+	$this->set('devices', $devices);
+
 
         foreach ($devicetypes as $devicetype){
             $devicecounts[] = $this->Devices->find('all')
@@ -53,8 +56,25 @@ class DashboardController extends AppController
                 ->count();
         }
 
+        // Query the Sensordata table
+        $this->loadModel('Sensordata');
+
+        foreach ($users as $user){
+            $userdatacounts[] = $this->Sensordata->find('all')
+                ->where(['user_id' => $user->id])
+                ->count();
+        }
+
+        foreach ($devices as $device){
+            $devicedatacounts[] = $this->Sensordata->find('all')
+                ->where(['device_id' => $device->id])
+                ->count();
+        }
+
         $this->set('devicecounts', $devicecounts);
         $this->set('usercounts', $usercounts);
+        $this->set('devicedatacounts', $devicedatacounts);
+        $this->set('userdatacounts', $userdatacounts);
     }
 
     /**
