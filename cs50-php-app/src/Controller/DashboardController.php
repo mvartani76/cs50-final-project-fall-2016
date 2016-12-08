@@ -151,12 +151,7 @@ class DashboardController extends AppController
      */
     public function realtime($id = null)
     {
-        $dashboard = $this->Dashboard->get($id, [
-            'contain' => []
-        ]);
-
-        $this->set('dashboard', $dashboard);
-        $this->set('_serialize', ['dashboard']);
+        $this->viewBuilder()->layout('default');
     }    
 
     /**
@@ -168,11 +163,6 @@ class DashboardController extends AppController
      */
     public function timecharts($id = null)
     {
-        $dashboard = $this->Dashboard->get($id, [
-            'contain' => []
-        ]);
-
-        $this->set('dashboard', $dashboard);
-        $this->set('_serialize', ['dashboard']);
+        $this->viewBuilder()->layout('default');
     } 
 }
