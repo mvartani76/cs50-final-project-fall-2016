@@ -31,43 +31,22 @@ class DashboardController extends AppController
             'contain' => ['Users']
             ];
 
-       $tusers = TableRegistry::get('Users');
-       $ttvalues = TableRegistry::get('Testvalues');
+        // Query the Devicetypes table
+        $this->loadModel('Devicetypes');
+        $devicetypes = $this->Devicetypes->find('all');
+        $this->set('devicetypes', $devicetypes);
 
-        $this->loadModel('Testvalues');
-        $query = $this->Testvalues->find('all');
+        $numdevicetypes = count($devicetypes);
+        
+        // Query the number of devices by DeviceType in the database
+        $this->loadModel('Devices');
 
-        $data = $query->toArray();
-        $this->set('testvalues', $data);
-        //foreach ($query as $row) {
-            //echo $row->id;
-        //    $cats[] = $row->id;
-        //    $data[] = $row->real_value1;
-        //}
-
-        //$this->set('dontknow', $query);
-        //$this->set('cats',$cats);
-        //$this->set('data',$data);
-
-        $query = $tusers->find();
-
-        foreach ($query as $row) {
-            //echo $row->id;
-            $farray[] = $row;
+        for ($i=1; $i<=$numdevicetypes+1; $i++){
+            $devicecounts[$i] = $this->Devices->find('all')
+                ->where(['deviceType_id' => $i])
+                ->count();
         }
-
-        //$farray = array($query);
-        //$users = [];
-        //$this->set($users,$farray);
-
-        //$query = $ttvalues->find();
-
-        //foreach ($query as $row) {
-            //echo $row->id;
-        //    $garray[] = $row;
-        //}
-
-        //$this->set($testvalues,$garray);
+        $this->set('devicecounts', $devicecounts);
 
     }
 
