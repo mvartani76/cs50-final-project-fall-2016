@@ -2,6 +2,15 @@
 
 Here is the source code used to generate the cloud platform. This is primarily driven by the CakePHP frameworks which are described a bit more below
 
+## Login / Register
+Users/visitors can only visit the home page, www.cs50-final.mikevartanian.me, without logging in. Any attempt to access subsites within the platform will be redirected to the login screen as shown below.
+
+![alt text](images/pages/cs50-final-login.jpg "Login Portal")
+
+If the user does not have an account, this is easily accomplished through the Register form as shown below.
+![alt text](images/pages/cs50-final-register.jpg "Registration Portal")
+Note that the login link is only available if there is no user session while the Register/Logout links are only available if there is a user session available.
+
 ## Database
 This simple IoT platform project utilizes a database with four (4) tables: users, devices, devicetypes, sensordata
 
