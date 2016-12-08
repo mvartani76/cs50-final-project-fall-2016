@@ -2,8 +2,8 @@
 
 # iOS App Screenshots
 
-<img src="iOS-images/cs50-final-ios-app-main-storyboard.png" width="400px">
-<img src="iOS-images/cs50-final-ios-app-screenshot.PNG" width="400px">
+<img src="iOS-images/cs50-final-ios-app-main-storyboard.png" width="500px" height="500px">
+<img src="iOS-images/cs50-final-ios-app-screenshot.PNG" width="300px" height="500px">
 
 # Tools / Software Used
 
