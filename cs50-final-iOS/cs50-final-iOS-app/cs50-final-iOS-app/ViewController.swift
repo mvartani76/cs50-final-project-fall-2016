@@ -110,6 +110,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         task.resume()
     }
     
+    // Pressing the Done button closes the keyboard
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         
