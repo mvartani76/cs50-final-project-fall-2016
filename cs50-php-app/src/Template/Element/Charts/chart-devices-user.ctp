@@ -3,23 +3,23 @@
 
 $chart = new \Ghunti\HighchartsPHP\Highchart();
 $chart->includeExtraScripts(array('highcharts-more'));
-$chart->chart->renderTo = 'highcharts-container-devices-type';
+$chart->chart->renderTo = 'highcharts-container-devices-user';
 
 $chart->chart->type = 'column';
 
-$chart->title->text = 'Number of Devices by DeviceType';
+$chart->title->text = 'Number of Devices by User (email)';
 
 $data = array();
 $cats = array();
 
-foreach ($devicecounts as $devicecount)
+foreach ($usercounts as $usercount)
 {
     $data[] = $devicecount;
 }
 
-foreach ($devicetypes as $devicetype)
+foreach ($users as $user)
 {
-    $cats[] = $devicetype->name;
+    $cats[] = $user->email;
 }
 
 $chart->yAxis->min = 0;

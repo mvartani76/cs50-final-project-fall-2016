@@ -171,6 +171,7 @@
 
     <div id="highcharts-container-devices-type"></div>
         <?= $this->element('Charts/chart-devices-type', $devicecounts) ?>
-
+    <div id="highcharts-container-devices-user"></div>
+        <?= $this->element('Charts/chart-devices-user', $usercounts) ?>
 </div>
 

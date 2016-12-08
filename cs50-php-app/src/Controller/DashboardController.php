@@ -37,6 +37,13 @@ class DashboardController extends AppController
         $this->set('devicetypes', $devicetypes);
 
         $numdevicetypes = $devicetypes->count();
+
+        // Query the Users table
+        $this->loadModel('Users');
+        $users = $this->Users->find('all');
+        $this->set('users', $users);
+
+        $numusers = $users->count();
         
         // Query the number of devices by DeviceType in the database
         $this->loadModel('Devices');
@@ -46,8 +53,15 @@ class DashboardController extends AppController
                 ->where(['deviceType_id' => $i])
                 ->count();
         }
-        $this->set('devicecounts', $devicecounts);
 
+        for ($i=1; $i<=$numusers; $i++){
+            $usercounts[$i] = $this->Devices->find('all')
+                ->where(['user_id' => $i])
+                ->count();
+        }
+
+        $this->set('devicecounts', $devicecounts);
+        $this->set('usercounts', $usercounts);
     }
 
     /**
