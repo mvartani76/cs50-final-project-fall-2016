@@ -3,7 +3,7 @@ Sample code for demonstrating simple data logging from DS18B20 Temperature Senso
 
 Arduino UNO has both digital and analog input pins so we can just connect the sensors appropriate without any additional ADCs.
 
-**Libraries** - This directory contains the necessary libraries for the Xively platform and the sensors
+**Libraries** - This directory contains the necessary libraries for interfacing with the sensors
 
 Place Arduino OneWire and dtc Library Folders in <your-path-to-Arduino-Directory>\libraries directory
 
