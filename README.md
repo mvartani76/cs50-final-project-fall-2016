@@ -1,5 +1,5 @@
 # Simple IoT with CakePHP
-Source Code and Documentation for Final project for CS50 class
+Source Code and Documentation for Fall 2016 CS50 Final project
 
 This repository has three sub-directories: Arduino, cs50-final-iOS, and cs50-php-app.
 
