@@ -92,6 +92,12 @@ body {font-family: Verdana,sans-serif;margin:0}
   animation-duration: 1.5s;
 }
 
+ul.left-list-style {
+  text-align: left;
+  font-size: 18px;
+  color: #000000;
+}
+
 @-webkit-keyframes fade {
   from {opacity: .4} 
   to {opacity: 1}
